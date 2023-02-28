@@ -29,7 +29,7 @@ export class App extends Component  {
                   this.setState({ gallery: [...this.state.gallery, ...response.data.hits], totalResult: response.data.total })
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log('Some error:' + error))
           .finally(() => 
           {
             this.setState({ loading: false });
