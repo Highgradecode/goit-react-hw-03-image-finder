@@ -29,17 +29,8 @@ export class App extends Component  {
                   this.setState({ gallery: [...this.state.gallery, ...response.data.hits], totalResult: response.data.total })
                 }
             })
-            .catch(error => console.log('Some error:' + error))
-          .finally(() => 
-          {
-            this.setState({ loading: false });
-
-            setTimeout(() => window.scrollTo({
-              top: document.body.scrollHeight,
-              behavior: "smooth",
-            }), 500);
-          } 
-          );
+            .catch(error => console.log(error))
+          .finally(() =>  this.setState({ loading: false }));
         };
   };
 
@@ -57,6 +48,11 @@ export class App extends Component  {
 
   getNextPage = () => {
     this.setState((prevState) => ({ page: prevState.page + 1 }));
+
+    setTimeout(() => window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    }), 500);
   };
 
   render() {
